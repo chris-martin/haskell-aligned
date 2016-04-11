@@ -44,12 +44,12 @@ or talk to me on <a href="https://twitter.com/chris__martin">Twitter</a>.
 
 <h3>Function application</h3>
 
-> ($)      ::                                     (a ->   b) ->   a ->   b
-> (<$>)    ::  Functor     f                 =>   (a ->   b) -> f a -> f b
-> (<*>)    ::  Applicative f                 => f (a ->   b) -> f a -> f b
-> liftA    ::  Applicative f                 =>   (a ->   b) -> f a -> f b
-> liftM    ::  Monad       f                 =>   (a ->   b) -> f a -> f b
-> (=<<)    ::  Monad       f                 =>   (a -> f b) -> f a -> f b
+> ($)      ::                                     (a ->   b) ->   a ->      b
+> (<$>)    ::  Functor     f                 =>   (a ->   b) -> f a -> f    b
+> (<*>)    ::  Applicative f                 => f (a ->   b) -> f a -> f    b
+> liftA    ::  Applicative f                 =>   (a ->   b) -> f a -> f    b
+> liftM    ::  Monad       f                 =>   (a ->   b) -> f a -> f    b
+> (=<<)    ::  Monad       f                 =>   (a -> f b) -> f a -> f    b
 > mapM     :: (Monad       f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
 > traverse :: (Applicative f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
 > foldMap  :: (Monoid      m, Traversable t) =>   (a -> m)   -> t a -> m
@@ -77,7 +77,7 @@ or talk to me on <a href="https://twitter.com/chris__martin">Twitter</a>.
 
 > sequenceA :: (Applicative f, Traversable t) => t (f a) -> f (t a)
 > sequence  :: (Monad       f, Traversable t) => t (f a) -> f (t a)
-> join      ::  Monad       f                 => f (f a) -> f a
+> join      ::  Monad       f                 => f (f a) -> f    a
 
 </main>
 
