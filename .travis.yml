@@ -1,10 +1,18 @@
 sudo: false
-language: haskell
-ghc: 7.8
+
+cache:
+  directories:
+    - $HOME/.stack
+
+    before_install:
+- mkdir -p ~/.local/bin
+- export PATH=$HOME/.local/bin:$PATH
+- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 
 script:
-- cabal configure
-- cabal haddock
+- stack --no-terminal setup
+- stack --no-terminal install hscolour
+- stack --no-terminal haddock
 - mkdir site
 - cp dist/doc/html/aligned/src/Aligned.html site/index.html
 - cd site; git init
