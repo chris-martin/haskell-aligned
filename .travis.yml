@@ -16,14 +16,15 @@ script:
 - mkdir site
 - cp .stack-work/dist/x86_64-linux-nix/Cabal-1.22.5.0/doc/html/aligned/src/Aligned.html site/index.html
 - cp .stack-work/dist/x86_64-linux-nix/Cabal-1.22.5.0/doc/html/aligned/src/hscolour.css site/
-- cd site; git init
-- cd site; git add .
-- cd site; git config user.name "Travis CI"
-- cd site; git config user.email "<>"
-- cd site; git commit --message "Deploy to GitHub Pages"
-- cd site; GITHUB_URL=https://$GITHUB_TOKEN@github.com/chris-martin/haskell-aligned.git
-# Redirect any output to /dev/null to avoid exposing the GitHub access token.
-- cd site; git push --force --quiet $GITHUB_URL HEAD:gh-pages > /dev/null 2>&1
+- cd site
+- git init
+- git add .
+- git config user.name "Travis CI"
+- git config user.email "<>"
+- git commit --message "Deploy to GitHub Pages"
+- GITHUB_URL=https://$GITHUB_TOKEN@github.com/chris-martin/haskell-aligned.git
+- # Redirect any output to /dev/null to avoid exposing the GitHub access token.
+- git push --force --quiet $GITHUB_URL HEAD:gh-pages > /dev/null 2>&1
 
 addons:
   apt:
