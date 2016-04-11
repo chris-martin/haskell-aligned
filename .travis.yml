@@ -14,7 +14,8 @@ script:
 - stack --no-terminal install hscolour
 - stack --no-terminal haddock
 - mkdir site
-- cp dist/doc/html/aligned/src/Aligned.html site/index.html
+- cp .stack-work/dist/x86_64-linux-nix/Cabal-1.22.5.0/doc/html/aligned/src/Aligned.html site/index.html
+- cp .stack-work/dist/x86_64-linux-nix/Cabal-1.22.5.0/doc/html/aligned/src/hscolour.css site/
 - cd site; git init
 - cd site; git add .
 - cd site; git config user.name "Travis CI"
