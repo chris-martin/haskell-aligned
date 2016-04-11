@@ -25,18 +25,20 @@ or talk to me on <a href="https://twitter.com/chris__martin">Twitter</a>.
 
 <div style="display: none;">
 
-> module Aligned where
->
-> import Prelude (Applicative, Bool, Functor, Monad, Monoid, Traversable)
-> import Control.Monad (MonadPlus)
->
-> import qualified Prelude
-> import qualified Control.Applicative
-> import qualified Control.Monad
-> import qualified Data.Foldable
-> import qualified Data.Functor
-> import qualified Data.List
-> import qualified Data.Traversable
+\begin{code}
+module Aligned where
+
+import Prelude (Applicative, Bool, Functor, Monad, Monoid, Traversable)
+import Control.Monad (MonadPlus)
+
+import qualified Prelude
+import qualified Control.Applicative
+import qualified Control.Monad
+import qualified Data.Foldable
+import qualified Data.Functor
+import qualified Data.List
+import qualified Data.Traversable
+\end{code}
 
 </div>
 
@@ -44,72 +46,84 @@ or talk to me on <a href="https://twitter.com/chris__martin">Twitter</a>.
 
 <h3>Function application</h3>
 
-> ($)      ::                                     (a ->   b) ->   a ->      b
-> (<$>)    ::  Functor     f                 =>   (a ->   b) -> f a -> f    b
-> (<*>)    ::  Applicative f                 => f (a ->   b) -> f a -> f    b
-> liftA    ::  Applicative f                 =>   (a ->   b) -> f a -> f    b
-> liftM    ::  Monad       f                 =>   (a ->   b) -> f a -> f    b
-> (=<<)    ::  Monad       f                 =>   (a -> f b) -> f a -> f    b
-> mapM     :: (Monad       f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
-> traverse :: (Applicative f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
-> foldMap  :: (Monoid      b, Traversable t) =>   (a ->   b) -> t a ->      b
+\begin{code}
+($)      ::                                     (a ->   b) ->   a ->      b
+(<$>)    ::  Functor     f                 =>   (a ->   b) -> f a -> f    b
+(<*>)    ::  Applicative f                 => f (a ->   b) -> f a -> f    b
+liftA    ::  Applicative f                 =>   (a ->   b) -> f a -> f    b
+liftM    ::  Monad       f                 =>   (a ->   b) -> f a -> f    b
+(=<<)    ::  Monad       f                 =>   (a -> f b) -> f a -> f    b
+mapM     :: (Monad       f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
+traverse :: (Applicative f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
+foldMap  :: (Monoid      b, Traversable t) =>   (a ->   b) -> t a ->      b
+\end{code}
 
 <h3>Function composition</h3>
 
-> (.)   ::            (b ->   c) -> (a ->   b) -> a ->   c
-> (<=<) :: Monad m => (b -> m c) -> (a -> m b) -> a -> m c
+\begin{code}
+(.)   ::            (b ->   c) -> (a ->   b) -> a ->   c
+(<=<) :: Monad m => (b -> m c) -> (a -> m b) -> a -> m c
+\end{code}
 
 <h3>Filtering</h3>
 
-> filter  ::                (a ->   Bool) ->  [a] ->   [a]
-> filterM :: Monad     m => (a -> m Bool) ->  [a] -> m [a]
-> mfilter :: MonadPlus m => (a ->   Bool) -> m a  -> m  a
+\begin{code}
+filter  ::                (a ->   Bool) ->  [a] ->   [a]
+filterM :: Monad     m => (a -> m Bool) ->  [a] -> m [a]
+mfilter :: MonadPlus m => (a ->   Bool) -> m a  -> m  a
+\end{code}
 
 <h3>Discarding one of two values</h3>
 
-> const ::                    a ->   b ->   a
-> (<$)  :: Functor     f =>   a -> f b -> f a
-> (<*)  :: Applicative f => f a -> f b -> f a
-> ($>)  :: Functor     f => f a ->   b -> f b
-> (*>)  :: Applicative f => f a -> f b -> f b
+\begin{code}
+const ::                    a ->   b ->   a
+(<$)  :: Functor     f =>   a -> f b -> f a
+(<*)  :: Applicative f => f a -> f b -> f a
+($>)  :: Functor     f => f a ->   b -> f b
+(*>)  :: Applicative f => f a -> f b -> f b
+\end{code}
 
 <h3>Restructuring</h3>
 
-> sequenceA :: (Applicative f, Traversable t) => t (f a) -> f (t a)
-> sequence  :: (Monad       f, Traversable t) => t (f a) -> f (t a)
-> join      ::  Monad       f                 => f (f a) -> f    a
+\begin{code}
+sequenceA :: (Applicative f, Traversable t) => t (f a) -> f (t a)
+sequence  :: (Monad       f, Traversable t) => t (f a) -> f (t a)
+join      ::  Monad       f                 => f (f a) -> f    a
+\end{code}
 
 </main>
 
 <div style="display: none;">
 
-> (.)       = (Prelude..)
-> ($)       = (Prelude.$)
-> const     = (Prelude.const)
->
-> (<*>)     = (Control.Applicative.<*>)
-> (*>)      = (Control.Applicative.*>)
-> (<*)      = (Control.Applicative.<*)
-> liftA     = Control.Applicative.liftA
->
-> (=<<)     = (Control.Monad.=<<)
-> (<=<)     = (Control.Monad.<=<)
-> filterM   = Control.Monad.filterM
-> join      = Control.Monad.join
-> liftM     = Control.Monad.liftM
-> mapM      = Control.Monad.mapM
-> mfilter   = Control.Monad.mfilter
-> sequence  = Control.Monad.sequence
->
-> foldMap   = Data.Foldable.foldMap
->
-> (<$>)     = (Data.Functor.<$>)
-> (<$)      = (Data.Functor.<$)
-> ($>)      = (Data.Functor.$>)
->
-> filter    = Data.List.filter
->
-> sequenceA = Data.Traversable.sequenceA
-> traverse  = Data.Traversable.traverse
+\begin{code}
+(.)       = (Prelude..)
+($)       = (Prelude.$)
+const     = (Prelude.const)
+
+(<*>)     = (Control.Applicative.<*>)
+(*>)      = (Control.Applicative.*>)
+(<*)      = (Control.Applicative.<*)
+liftA     = Control.Applicative.liftA
+
+(=<<)     = (Control.Monad.=<<)
+(<=<)     = (Control.Monad.<=<)
+filterM   = Control.Monad.filterM
+join      = Control.Monad.join
+liftM     = Control.Monad.liftM
+mapM      = Control.Monad.mapM
+mfilter   = Control.Monad.mfilter
+sequence  = Control.Monad.sequence
+
+foldMap   = Data.Foldable.foldMap
+
+(<$>)     = (Data.Functor.<$>)
+(<$)      = (Data.Functor.<$)
+($>)      = (Data.Functor.$>)
+
+filter    = Data.List.filter
+
+sequenceA = Data.Traversable.sequenceA
+traverse  = Data.Traversable.traverse
+\end{code}
 
 </div>
