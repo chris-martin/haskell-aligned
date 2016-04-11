@@ -1,16 +1,27 @@
 <style>
 
 body {
-  padding: 1em;
+  padding: 0.5em 1em 3em;
   text-align: center;
 }
 
 main {
   display: inline-block;
   text-align: left;
+  border-top: 1px solid #333;
+  margin-top: 2em;
+  padding: 1em 1em 0;
 }
 
 </style>
+
+<h1>Lined-up Haskell types</h1>
+
+<div>
+Got more to add?
+Submit a <a href="https://github.com/chris-martin/haskell-aligned">GitHub</a> issue
+or talk to me on <a href="https://twitter.com/chris__martin">Twitter</a>.
+</div>
 
 <div style="display: none;">
 
