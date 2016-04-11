@@ -1,0 +1,20 @@
+sudo: false
+
+ghc: 7.8
+
+script:
+- cabal configure
+- cabal haddock
+- mkdir site
+- cp dist/doc/html/aligned/src/Aligned.html site/index.html
+- cd site; git init
+- cd site; git add .
+- cd site; git config user.name "Travis CI"
+- cd site; git config user.email "<>"
+- cd site; git commit --message "Deploy to GitHub Pages"
+- cd site; GITHUB_URL=https://$GITHUB_TOKEN@github.com/chris-martin/haskell-aligned.git
+# Redirect any output to /dev/null to avoid exposing the GitHub access token.
+- cd site; git push --force --quiet $GITHUB_URL HEAD:gh-pages > /dev/null 2>&1
+
+notifications:
+  email: false
