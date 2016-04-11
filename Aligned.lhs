@@ -52,7 +52,7 @@ or talk to me on <a href="https://twitter.com/chris__martin">Twitter</a>.
 > (=<<)    ::  Monad       f                 =>   (a -> f b) -> f a -> f    b
 > mapM     :: (Monad       f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
 > traverse :: (Applicative f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
-> foldMap  :: (Monoid      m, Traversable t) =>   (a -> m)   -> t a -> m
+> foldMap  :: (Monoid      b, Traversable t) =>   (a ->   b) -> t a ->      b
 
 <h3>Function composition</h3>
 
