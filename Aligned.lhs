@@ -103,6 +103,14 @@ sequence  :: (Monad       f, Traversable t) => t (f a) -> f (t a)
 join      ::  Monad       f                 => f (f a) -> f    a
 \end{code}
 
+<h3>Identity</h3>
+
+\begin{code}
+id     ::                  a ->   a
+pure   :: Applicative f => a -> f a
+return :: Monad       m => a -> m a
+\end{code}
+
 </main>
 
 <div style="display: none;">
@@ -110,12 +118,14 @@ join      ::  Monad       f                 => f (f a) -> f    a
 \begin{code}
 (.)       = (Prelude..)
 ($)       = (Prelude.$)
-const     = (Prelude.const)
+const     = Prelude.const
+id        = Prelude.id
 
 (<*>)     = (Control.Applicative.<*>)
 (*>)      = (Control.Applicative.*>)
 (<*)      = (Control.Applicative.<*)
 liftA     = Control.Applicative.liftA
+pure      = Control.Applicative.pure
 
 (=<<)     = (Control.Monad.=<<)
 (<=<)     = (Control.Monad.<=<)
@@ -124,6 +134,7 @@ join      = Control.Monad.join
 liftM     = Control.Monad.liftM
 mapM      = Control.Monad.mapM
 mfilter   = Control.Monad.mfilter
+return    = Control.Monad.return
 sequence  = Control.Monad.sequence
 
 foldMap   = Data.Foldable.foldMap
