@@ -13,6 +13,18 @@ main {
   padding: 1em 1em 0;
 }
 
+.hs-definition, .hs-varop {
+  color: blue;
+}
+
+.hs-conid {
+  color: green;
+}
+
+.hs-layout, .hs-keyglyph {
+  color: #a57145;
+}
+
 </style>
 
 <h1>Lined-up Haskell types</h1>
