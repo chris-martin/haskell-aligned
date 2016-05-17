@@ -93,6 +93,7 @@ const ::                    a ->   b ->   a
 (<*)  :: Applicative f => f a -> f b -> f a
 ($>)  :: Functor     f => f a ->   b -> f b
 (*>)  :: Applicative f => f a -> f b -> f b
+(>>)  :: Monad       f => f a -> f b -> f b
 \end{code}
 
 <h3>Restructuring</h3>
