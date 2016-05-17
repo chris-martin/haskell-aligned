@@ -129,6 +129,7 @@ liftA     = Control.Applicative.liftA
 pure      = Control.Applicative.pure
 
 (=<<)     = (Control.Monad.=<<)
+(>>)      = (Control.Monad.>>)
 (<=<)     = (Control.Monad.<=<)
 filterM   = Control.Monad.filterM
 join      = Control.Monad.join
