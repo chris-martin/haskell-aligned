@@ -68,6 +68,14 @@ traverse :: (Applicative f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
 foldMap  :: (Monoid      b, Traversable t) =>   (a ->   b) -> t a ->      b
 \end{code}
 
+<h3>Applicative lifting</h3>
+
+\begin{code}
+liftA  :: Applicative f => (a -> b)           -> f a -> f b
+liftA2 :: Applicative f => (a -> b -> c)      -> f a -> f b -> f c
+liftA3 :: Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
+\end{code}
+
 <h3>Function composition</h3>
 
 \begin{code}
@@ -123,6 +131,9 @@ id        = Prelude.id
 (<*>)     = (Control.Applicative.<*>)
 (*>)      = (Control.Applicative.*>)
 (<*)      = (Control.Applicative.<*)
+liftA     = Control.Applicative.liftA
+liftA2    = Control.Applicative.liftA2
+liftA3    = Control.Applicative.liftA3
 pure      = Control.Applicative.pure
 
 (=<<)     = (Control.Monad.=<<)
