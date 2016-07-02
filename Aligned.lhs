@@ -62,7 +62,6 @@ import qualified Data.Traversable
 ($)      ::                                     (a ->   b) ->   a ->      b
 (<$>)    ::  Functor     f                 =>   (a ->   b) -> f a -> f    b
 (<*>)    ::  Applicative f                 => f (a ->   b) -> f a -> f    b
-liftA    ::  Applicative f                 =>   (a ->   b) -> f a -> f    b
 (=<<)    ::  Monad       f                 =>   (a -> f b) -> f a -> f    b
 mapM     :: (Monad       f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
 traverse :: (Applicative f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
@@ -124,7 +123,6 @@ id        = Prelude.id
 (<*>)     = (Control.Applicative.<*>)
 (*>)      = (Control.Applicative.*>)
 (<*)      = (Control.Applicative.<*)
-liftA     = Control.Applicative.liftA
 pure      = Control.Applicative.pure
 
 (=<<)     = (Control.Monad.=<<)
