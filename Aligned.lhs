@@ -63,7 +63,6 @@ import qualified Data.Traversable
 (<$>)    ::  Functor     f                 =>   (a ->   b) -> f a -> f    b
 (<*>)    ::  Applicative f                 => f (a ->   b) -> f a -> f    b
 liftA    ::  Applicative f                 =>   (a ->   b) -> f a -> f    b
-liftM    ::  Monad       f                 =>   (a ->   b) -> f a -> f    b
 (=<<)    ::  Monad       f                 =>   (a -> f b) -> f a -> f    b
 mapM     :: (Monad       f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
 traverse :: (Applicative f, Traversable t) =>   (a -> f b) -> t a -> f (t b)
@@ -133,7 +132,6 @@ pure      = Control.Applicative.pure
 (<=<)     = (Control.Monad.<=<)
 filterM   = Control.Monad.filterM
 join      = Control.Monad.join
-liftM     = Control.Monad.liftM
 mapM      = Control.Monad.mapM
 mfilter   = Control.Monad.mfilter
 return    = Control.Monad.return
