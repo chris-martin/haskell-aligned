@@ -59,6 +59,7 @@ import qualified Control.Monad.Trans.Maybe
 import qualified Data.Foldable
 import qualified Data.Functor
 import qualified Data.List
+import qualified Data.Monoid
 import qualified Data.Traversable
 \end{code}
 
@@ -138,6 +139,13 @@ runListT     :: ListT     m a -> m       [a]
 runMaybeT    :: MaybeT    m a -> m (Maybe a)
 \end{code}
 
+<h3>Monads are monoidal functors</h3>
+
+\begin{code}
+mappend :: Monoid m => m -> m    -> m   ; mempty  :: Monoid m =>      m
+join'   :: Monad  m => m   (m a) -> m a ; return' :: Monad  m => a -> m a
+\end{code}
+
 </main>
 
 <div style="display: none;">
@@ -161,9 +169,11 @@ pure      = Control.Applicative.pure
 (<=<)     = (Control.Monad.<=<)
 filterM   = Control.Monad.filterM
 join      = Control.Monad.join
+join'     = Control.Monad.join
 mapM      = Control.Monad.mapM
 mfilter   = Control.Monad.mfilter
 return    = Control.Monad.return
+return'   = Control.Monad.return
 sequence  = Control.Monad.sequence
 
 liftIO       = Control.Monad.IO.Class.liftIO
@@ -179,6 +189,9 @@ foldMap   = Data.Foldable.foldMap
 ($>)      = (Data.Functor.$>)
 
 filter    = Data.List.filter
+
+mappend   = Data.Monoid.mappend
+mempty    = Data.Monoid.mempty
 
 sequenceA = Data.Traversable.sequenceA
 traverse  = Data.Traversable.traverse
