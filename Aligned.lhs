@@ -47,6 +47,7 @@ import Control.Monad.Trans.Class (MonadTrans)
 import Control.Monad.Trans.Identity (IdentityT)
 import Control.Monad.Trans.List (ListT)
 import Control.Monad.Trans.Maybe (MaybeT)
+import Data.Foldable (Foldable)
 
 import qualified Prelude
 import qualified Control.Applicative
@@ -100,6 +101,13 @@ liftA3 :: Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
 filter  ::                (a ->   Bool) ->  [a] ->   [a]
 filterM :: Monad     m => (a -> m Bool) ->  [a] -> m [a]
 mfilter :: MonadPlus m => (a ->   Bool) -> m a  -> m  a
+\end{code}
+
+<h3>Monoidal folding</h3>
+
+\begin{code}
+fold    :: (Monoid m, Foldable t) => t m  -> m
+mconcat ::  Monoid m              =>  [m] -> m
 \end{code}
 
 <h3>Discarding one of two values</h3>
@@ -182,6 +190,7 @@ runIdentityT = Control.Monad.Trans.Identity.runIdentityT
 runListT     = Control.Monad.Trans.List.runListT
 runMaybeT    = Control.Monad.Trans.Maybe.runMaybeT
 
+fold      = Data.Foldable.fold
 foldMap   = Data.Foldable.foldMap
 
 (<$>)     = (Data.Functor.<$>)
@@ -191,6 +200,7 @@ foldMap   = Data.Foldable.foldMap
 filter    = Data.List.filter
 
 mappend   = Data.Monoid.mappend
+mconcat   = Data.Monoid.mconcat
 mempty    = Data.Monoid.mempty
 
 sequenceA = Data.Traversable.sequenceA
