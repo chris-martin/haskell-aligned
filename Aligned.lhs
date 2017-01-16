@@ -106,8 +106,9 @@ mfilter :: MonadPlus m => (a ->   Bool) -> m a  -> m  a
 <h3>Monoidal folding</h3>
 
 \begin{code}
-fold    :: (Monoid m, Foldable t) => t m  -> m
-mconcat ::  Monoid m              =>  [m] -> m
+fold    :: (Monoid m, Foldable t) => t m   -> m
+mconcat ::  Monoid m              =>  [m]  -> m
+concat  ::                           [[a]] -> [a]
 \end{code}
 
 <h3>Discarding one of two values</h3>
@@ -197,6 +198,7 @@ foldMap   = Data.Foldable.foldMap
 (<$)      = (Data.Functor.<$)
 ($>)      = (Data.Functor.$>)
 
+concat    = Data.List.concat
 filter    = Data.List.filter
 
 mappend   = Data.Monoid.mappend
