@@ -148,7 +148,7 @@ runListT     :: ListT     m a -> m       [a]
 runMaybeT    :: MaybeT    m a -> m (Maybe a)
 \end{code}
 
-<h3>Monads are monoidal functors</h3>
+<h3>The monoid in Monad</h3>
 
 \begin{code}
 mappend :: Monoid m => m -> m    -> m   ; mempty  :: Monoid m =>      m
