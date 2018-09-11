@@ -83,6 +83,7 @@ foldMap  :: (Monoid      b, Traversable t) =>   (a ->   b) -> t a ->      b
 <h3>Applicative lifting</h3>
 
 \begin{code}
+pure   :: Applicative f => (a)                -> f a
 liftA  :: Applicative f => (a -> b)           -> f a -> f b
 liftA2 :: Applicative f => (a -> b -> c)      -> f a -> f b -> f c
 liftA3 :: Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
