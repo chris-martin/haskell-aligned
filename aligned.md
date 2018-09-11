@@ -116,8 +116,11 @@ runMaybeT    :: MaybeT    m a -> m (Maybe a)
 ## The monoid in Monad
 
 ```haskell
-mappend :: Monoid m => m -> m    -> m   ; mempty  :: Monoid m =>      m
-join'   :: Monad  m => m   (m a) -> m a ; return' :: Monad  m => a -> m a
+mappend :: Monoid m => m -> m    -> m
+join    :: Monad  m => m   (m a) -> m a
+
+mempty  :: Monoid m =>      m
+return  :: Monad  m => a -> m a
 ```
 
 </main></body></html>
