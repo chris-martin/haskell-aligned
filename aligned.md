@@ -120,6 +120,14 @@ sequenceA_ :: (Foldable    t, Applicative f) =>               t (f a) -> f ()
 traverse_  :: (Foldable    t, Applicative f) => (a -> f b) -> t    a  -> f ()
 ```
 
+## Folding with(out) effects and with(out) result accumulation
+
+```haskell
+foldl  ::                          (b -> a ->   b) -> b -> t a ->   b
+foldM  :: (Foldable t, Monad m) => (b -> a -> m b) -> b -> t a -> m b
+foldM_ :: (Foldable t, Monad m) => (b -> a -> m b) -> b -> t a -> m ()
+```
+
 ## Lifting
 
 ```haskell
