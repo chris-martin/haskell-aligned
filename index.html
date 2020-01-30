@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>
+Haskell Aligned
+</title>
+<style>
+body {
+  padding: 3.5em 1em 3em;
+  text-align: center;
+}
+main {
+  display: inline-block;
+  text-align: left;
+  border-top: 1px solid #333;
+  margin-top: 2em;
+  padding: 1em 1em 0;
+}
+.haskell {
+  color: #3c2410;
+}
+.haskell .dt {
+  color: green;
+}
+</style>
+</head>
+<body>
+<h1 id="lined-up-haskell-types">Lined-up Haskell types</h1>
+<p>Got more to add? Submit a <a href="https://github.com/chris-martin/haskell-aligned">GitHub</a> issue or talk to me on <a href="https://twitter.com/chris__martin">Twitter</a>.</p>
+<main>
+<h2 id="function-application">Function application</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1"><span class="ot">($)      ::</span>                                     (a <span class="ot">-&gt;</span>   b) <span class="ot">-&gt;</span>   a <span class="ot">-&gt;</span>      b</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="ot">(&lt;$&gt;)    ::</span>  <span class="dt">Functor</span>     f                 <span class="ot">=&gt;</span>   (a <span class="ot">-&gt;</span>   b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f    b</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="ot">(&lt;*&gt;)    ::</span>  <span class="dt">Applicative</span> f                 <span class="ot">=&gt;</span> f (a <span class="ot">-&gt;</span>   b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f    b</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="ot">(=&lt;&lt;)    ::</span>  <span class="dt">Monad</span>       f                 <span class="ot">=&gt;</span>   (a <span class="ot">-&gt;</span> f b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f    b</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="fu">mapM</span><span class="ot">     ::</span> (<span class="dt">Monad</span>       f, <span class="dt">Traversable</span> t) <span class="ot">=&gt;</span>   (a <span class="ot">-&gt;</span> f b) <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> f (t b)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="fu">traverse</span><span class="ot"> ::</span> (<span class="dt">Applicative</span> f, <span class="dt">Traversable</span> t) <span class="ot">=&gt;</span>   (a <span class="ot">-&gt;</span> f b) <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> f (t b)</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="fu">foldMap</span><span class="ot">  ::</span> (<span class="dt">Monoid</span>      b, <span class="dt">Traversable</span> t) <span class="ot">=&gt;</span>   (a <span class="ot">-&gt;</span>   b) <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span>      b</a></code></pre></div>
+<h2 id="applicative-lifting">Applicative lifting</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" title="1"><span class="fu">pure</span><span class="ot">   ::</span> <span class="dt">Applicative</span> f <span class="ot">=&gt;</span>  a                 <span class="ot">-&gt;</span> f a</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="ot">liftA  ::</span> <span class="dt">Applicative</span> f <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b)           <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="ot">liftA2 ::</span> <span class="dt">Applicative</span> f <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c)      <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b <span class="ot">-&gt;</span> f c</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="ot">liftA3 ::</span> <span class="dt">Applicative</span> f <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c <span class="ot">-&gt;</span> d) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b <span class="ot">-&gt;</span> f c <span class="ot">-&gt;</span> f d</a></code></pre></div>
+<h2 id="function-composition">Function composition</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb3-1" title="1"><span class="ot">(.)   ::</span>            (b <span class="ot">-&gt;</span>   c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span>   b) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span>   c</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="ot">(&lt;=&lt;) ::</span> <span class="dt">Monad</span> m <span class="ot">=&gt;</span> (b <span class="ot">-&gt;</span> m c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> m b) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> m c</a></code></pre></div>
+<h2 id="filtering">Filtering</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb4-1" title="1"><span class="fu">filter</span><span class="ot">  ::</span>                (a <span class="ot">-&gt;</span>   <span class="dt">Bool</span>) <span class="ot">-&gt;</span>  [a] <span class="ot">-&gt;</span>   [a]</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="ot">filterM ::</span> <span class="dt">Monad</span>     m <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> m <span class="dt">Bool</span>) <span class="ot">-&gt;</span>  [a] <span class="ot">-&gt;</span> m [a]</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="ot">mfilter ::</span> <span class="dt">MonadPlus</span> m <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span>   <span class="dt">Bool</span>) <span class="ot">-&gt;</span> m a  <span class="ot">-&gt;</span> m  a</a></code></pre></div>
+<h2 id="monoidal-folding">Monoidal folding</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" title="1"><span class="ot">fold    ::</span> (<span class="dt">Monoid</span> m, <span class="dt">Foldable</span> t) <span class="ot">=&gt;</span> t m   <span class="ot">-&gt;</span> m</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="fu">mconcat</span><span class="ot"> ::</span>  <span class="dt">Monoid</span> m              <span class="ot">=&gt;</span>  [m]  <span class="ot">-&gt;</span> m</a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="fu">concat</span><span class="ot">  ::</span>                           [[a]] <span class="ot">-&gt;</span> [a]</a></code></pre></div>
+<h2 id="monoidal-folding-without-mapping">Monoidal folding with(out) mapping</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb6-1" title="1"><span class="ot">fold      ::</span> (<span class="dt">Monoid</span> m, <span class="dt">Foldable</span> t) <span class="ot">=&gt;</span>               t m   <span class="ot">-&gt;</span>  m</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="fu">foldMap</span><span class="ot">   ::</span> (<span class="dt">Monoid</span> m, <span class="dt">Foldable</span> t) <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span>  m)  <span class="ot">-&gt;</span> t a   <span class="ot">-&gt;</span>  m</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="fu">concat</span><span class="ot">    ::</span>                                         [[a]] <span class="ot">-&gt;</span> [a]</a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="fu">concatMap</span><span class="ot"> ::</span>            <span class="dt">Foldable</span> t  <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> [b]) <span class="ot">-&gt;</span> t a   <span class="ot">-&gt;</span> [b]</a></code></pre></div>
+<h2 id="causality-without-mapping">Causality with(out) mapping</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb7-1" title="1"><span class="ot">join  ::</span> <span class="dt">Monad</span> process <span class="ot">=&gt;</span> process           (process result) <span class="ot">-&gt;</span> process result</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="ot">(&gt;&gt;=) ::</span> <span class="dt">Monad</span> process <span class="ot">=&gt;</span> process a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> process result) <span class="ot">-&gt;</span> process result</a></code></pre></div>
+<h2 id="discarding-one-of-two-values">Discarding one of two values</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb8-1" title="1"><span class="fu">const</span><span class="ot"> ::</span>                    a <span class="ot">-&gt;</span>   b <span class="ot">-&gt;</span>   a</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="ot">(&lt;$)  ::</span> <span class="dt">Functor</span>     f <span class="ot">=&gt;</span>   a <span class="ot">-&gt;</span> f b <span class="ot">-&gt;</span> f a</a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="ot">(&lt;*)  ::</span> <span class="dt">Applicative</span> f <span class="ot">=&gt;</span> f a <span class="ot">-&gt;</span> f b <span class="ot">-&gt;</span> f a</a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="ot">($&gt;)  ::</span> <span class="dt">Functor</span>     f <span class="ot">=&gt;</span> f a <span class="ot">-&gt;</span>   b <span class="ot">-&gt;</span> f b</a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="ot">(*&gt;)  ::</span> <span class="dt">Applicative</span> f <span class="ot">=&gt;</span> f a <span class="ot">-&gt;</span> f b <span class="ot">-&gt;</span> f b</a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="ot">(&gt;&gt;)  ::</span> <span class="dt">Monad</span>       f <span class="ot">=&gt;</span> f a <span class="ot">-&gt;</span> f b <span class="ot">-&gt;</span> f b</a></code></pre></div>
+<h2 id="restructuring">Restructuring</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb9-1" title="1"><span class="fu">sequenceA</span><span class="ot"> ::</span> (<span class="dt">Applicative</span> f, <span class="dt">Traversable</span> t) <span class="ot">=&gt;</span> t (f a) <span class="ot">-&gt;</span> f (t a)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="fu">sequence</span><span class="ot">  ::</span> (<span class="dt">Monad</span>       f, <span class="dt">Traversable</span> t) <span class="ot">=&gt;</span> t (f a) <span class="ot">-&gt;</span> f (t a)</a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="ot">join      ::</span>  <span class="dt">Monad</span>       f                 <span class="ot">=&gt;</span> f (f a) <span class="ot">-&gt;</span> f    a</a></code></pre></div>
+<h2 id="traversal-without-mapping-and-without-result-accumulation">Traversal with(out) mapping and with(out) result accumulation</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb10-1" title="1"><span class="fu">sequenceA</span><span class="ot">  ::</span> (<span class="dt">Traversable</span> t, <span class="dt">Applicative</span> f) <span class="ot">=&gt;</span>               t (f a) <span class="ot">-&gt;</span> f (t a)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="fu">traverse</span><span class="ot">   ::</span> (<span class="dt">Traversable</span> t, <span class="dt">Applicative</span> f) <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> f b) <span class="ot">-&gt;</span> t    a  <span class="ot">-&gt;</span> f (t b)</a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="ot">sequenceA_ ::</span> (<span class="dt">Foldable</span>    t, <span class="dt">Applicative</span> f) <span class="ot">=&gt;</span>               t (f a) <span class="ot">-&gt;</span> f ()</a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="ot">traverse_  ::</span> (<span class="dt">Foldable</span>    t, <span class="dt">Applicative</span> f) <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> f b) <span class="ot">-&gt;</span> t    a  <span class="ot">-&gt;</span> f ()</a></code></pre></div>
+<h2 id="folding-without-effects-and-without-result-accumulation">Folding with(out) effects and with(out) result accumulation</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb11-1" title="1"><span class="fu">foldl</span><span class="ot">  ::</span>                          (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span>   b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span>   b</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="ot">foldM  ::</span> (<span class="dt">Foldable</span> t, <span class="dt">Monad</span> m) <span class="ot">=&gt;</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> m b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> m b</a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="ot">foldM_ ::</span> (<span class="dt">Foldable</span> t, <span class="dt">Monad</span> m) <span class="ot">=&gt;</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> m b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> m ()</a></code></pre></div>
+<h2 id="lifting">Lifting</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb12-1" title="1"><span class="fu">id</span><span class="ot">     ::</span>                                     a <span class="ot">-&gt;</span>     a</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="fu">pure</span><span class="ot">   ::</span>  <span class="dt">Applicative</span> f                <span class="ot">=&gt;</span>    a <span class="ot">-&gt;</span>   f a</a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="fu">return</span><span class="ot"> ::</span>  <span class="dt">Monad</span>       m                <span class="ot">=&gt;</span>    a <span class="ot">-&gt;</span>   m a</a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="ot">liftIO ::</span>  <span class="dt">MonadIO</span>     m                <span class="ot">=&gt;</span> <span class="dt">IO</span> a <span class="ot">-&gt;</span>   m a</a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="ot">lift   ::</span> (<span class="dt">Monad</span>       m, <span class="dt">MonadTrans</span> t) <span class="ot">=&gt;</span> m  a <span class="ot">-&gt;</span> t m a</a></code></pre></div>
+<h2 id="running-transformers">Running transformers</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb13-1" title="1"><span class="ot">runIdentityT ::</span> <span class="dt">IdentityT</span> m a <span class="ot">-&gt;</span> m        a</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="ot">runListT     ::</span> <span class="dt">ListT</span>     m a <span class="ot">-&gt;</span> m       [a]</a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="ot">runMaybeT    ::</span> <span class="dt">MaybeT</span>    m a <span class="ot">-&gt;</span> m (<span class="dt">Maybe</span> a)</a></code></pre></div>
+<h2 id="the-monoid-in-monad">The monoid in Monad</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb14-1" title="1"><span class="fu">mappend</span><span class="ot"> ::</span> <span class="dt">Monoid</span> m <span class="ot">=&gt;</span> m <span class="ot">-&gt;</span> m    <span class="ot">-&gt;</span> m</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="ot">join    ::</span> <span class="dt">Monad</span>  m <span class="ot">=&gt;</span> m   (m a) <span class="ot">-&gt;</span> m a</a>
+<a class="sourceLine" id="cb14-3" title="3"></a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="fu">mempty</span><span class="ot">  ::</span> <span class="dt">Monoid</span> m <span class="ot">=&gt;</span>      m</a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="fu">return</span><span class="ot">  ::</span> <span class="dt">Monad</span>  m <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> m a</a></code></pre></div>
+</main>
+</body>
+</html>
