@@ -80,7 +80,7 @@ concat  ::                           [[a]] -> [a]
 
 ```haskell
 fold      :: (Monoid m, Foldable t) =>               t m   ->  m
-foldMap   :: (Monoid m, Foldable t) => (a -> m)   -> t a   ->  m
+foldMap   :: (Monoid m, Foldable t) => (a ->  m)  -> t a   ->  m
 concat    ::                                         [[a]] -> [a]
 concatMap ::            Foldable t  => (a -> [b]) -> t a   -> [b]
 ```
