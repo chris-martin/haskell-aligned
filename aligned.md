@@ -76,6 +76,22 @@ mconcat ::  Monoid m              =>  [m]  -> m
 concat  ::                           [[a]] -> [a]
 ```
 
+## Monoidal folding with(out) mapping
+
+```haskell
+fold      :: (Monoid m, Foldable t) =>               t m   ->  m
+foldMap   :: (Monoid m, Foldable t) => (a -> m)   -> t a   ->  m
+concat    ::                                         [[a]] -> [a]
+concatMap ::            Foldable t  => (a -> [b]) -> t a   -> [b]
+```
+
+## Causality with(out) mapping
+
+```haskell
+join  :: Monad process => process           (process result) -> process result
+(>>=) :: Monad process => process a -> (a -> process result) -> process result
+```
+
 ## Discarding one of two values
 
 ```haskell
@@ -93,6 +109,15 @@ const ::                    a ->   b ->   a
 sequenceA :: (Applicative f, Traversable t) => t (f a) -> f (t a)
 sequence  :: (Monad       f, Traversable t) => t (f a) -> f (t a)
 join      ::  Monad       f                 => f (f a) -> f    a
+```
+
+## Traversal with(out) mapping and with(out) result accumulation
+
+```haskell
+sequenceA  :: (Traversable t, Applicative f) =>               t (f a) -> f (t a)
+traverse   :: (Traversable t, Applicative f) => (a -> f b) -> t    a  -> f (t b)
+sequenceA_ :: (Foldable    t, Applicative f) =>               t (f a) -> f ()
+traverse_  :: (Foldable    t, Applicative f) => (a -> f b) -> t    a  -> f ()
 ```
 
 ## Lifting
